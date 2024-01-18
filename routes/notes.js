@@ -7,7 +7,6 @@ notes.get('/', (req, res) => {
   console.info(`${req.method} request received for notes`);
   fs.readFile('./db/db.json','utf8', (err, data) => {
     res.json(JSON.parse(data));
-    console.log(res.json)
   })
 });
 
