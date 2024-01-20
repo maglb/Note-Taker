@@ -6,7 +6,7 @@ const short = require('short-uuid');
 // This API route is a GET Route for retrieving all the notes
 notes.get('/', (req, res) => {
   console.info(`${req.method} request received for notes`);
-  fs.readFile('./db/db.json','utf8', (err, data) => {
+  fs.readFile('./db/db.json', 'utf8', (err, data) => {
     res.json(JSON.parse(data));
   })
 });
@@ -16,7 +16,7 @@ notes.post('/', (req, res) => {
   console.info(`${req.method} request received to add a note`);
   console.log(req.body);
 
-  const { title, text} = req.body;
+  const { title, text } = req.body;
 
   if (title && text) {
     const newNote = {
@@ -27,62 +27,61 @@ notes.post('/', (req, res) => {
 
     // Obtain existing notes
     fs.readFile('./db/db.json', 'utf8', (err, data) => {
-        if (err) {
-          console.error(err);
-        } else {
-          // Convert string into JSON object
-          const parsedNotes = JSON.parse(data);
+      if (err) {
+        console.error(err);
+      } else {
+        // Convert string into JSON object
+        const parsedNotes = JSON.parse(data);
 
-          // Add a new note
-          parsedNotes.push(newNote);
+        // Add a new note
+        parsedNotes.push(newNote);
 
-          // Write updated notes back to the file
-          fs.writeFile(
-            './db/db.json',
-            JSON.stringify(parsedNotes),
-            (err) =>
-              err
-                ? console.error(err)
-                : console.info('Successfully updated notes!')
-          );
-        }});
+        // Write updated notes back to the file
+        fs.writeFile(
+          './db/db.json',
+          JSON.stringify(parsedNotes),
+          (err) =>
+            err
+              ? console.error(err)
+              : console.info('Successfully updated notes!')
+        );
+      }
+    });
 
-        const response = {
-            status: 'success',
-            body: newNote,
-          };
-      
-          console.log(response);
-          res.status(201).json(response);
-        } else {
-          res.status(500).json('Error in posting note');
-        }
-      });
+    const response = {
+      status: 'success',
+      body: newNote,
+    };
 
-// // This API route is a DELETE Route for deleting a note
-//       notes.delete('/:id', 'utf8', (err, data) =>{
-//         console.info(`${req.method} request received to delete a note`);
+    console.log(response);
+    res.status(201).json(response);
+  } else {
+    res.status(500).json('Error in posting note');
+  }
+});
 
-//         if (err) {
-//           console.error(err);
-//         } if else {
-//           // Convert string into JSON object
-//           const parsedNotes = JSON.parse(data);
+// This API route is a DELETE Route for deleting a note
+notes.delete('/:id', (req, res) => {
+  const noteId = req.params.id;
 
-//           // Add a new note
-//           parsedNotes.push(newNote);
+  // Get the saved notes from db
+  fs.readFile('./db/db.json', 'utf8', (err, data) => {
+    if (err) {
+      console.error(err);
+    } else {
+      const retrievedNotes = JSON.parse(data);
 
-//           // Write updated notes back to the file
-//           fs.writeFile(
-//             './db/db.json',
-//             JSON.stringify(parsedNotes),
-//             (err) =>
-//               err
-//                 ? console.error(err)
-//                 : console.info('Successfully updated notes!')
-//           );
-//         }
+      // filter notes to remove the note we want to delete
+      const newNotesDb = retrievedNotes.filter((note) => note.id !== noteId);
 
-//       });
+      // Save the new notes database file
+      fs.writeFile('./db/db.json', JSON.stringify(newNotesDb), (err) =>
+      err
+        ? console.error(err)
+        : console.info('Successfully deleted note!'));
+    }
+  })
+  res.send(`Item ${noteId} has been deleted 🗑️`);
+});
 
 module.exports = notes;
