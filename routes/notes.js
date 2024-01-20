@@ -1,6 +1,7 @@
 const notes = require('express').Router();
 const uuid = require('uuid');
 const fs = require('fs');
+const short = require('short-uuid');
 
 // This API route is a GET Route for retrieving all the notes
 notes.get('/', (req, res) => {
@@ -21,7 +22,7 @@ notes.post('/', (req, res) => {
     const newNote = {
       title,
       text,
-      id: uuid.v4(),
+      id: short.generate(),
     };
 
     // Obtain existing notes
@@ -57,5 +58,31 @@ notes.post('/', (req, res) => {
           res.status(500).json('Error in posting note');
         }
       });
+
+// // This API route is a DELETE Route for deleting a note
+//       notes.delete('/:id', 'utf8', (err, data) =>{
+//         console.info(`${req.method} request received to delete a note`);
+
+//         if (err) {
+//           console.error(err);
+//         } if else {
+//           // Convert string into JSON object
+//           const parsedNotes = JSON.parse(data);
+
+//           // Add a new note
+//           parsedNotes.push(newNote);
+
+//           // Write updated notes back to the file
+//           fs.writeFile(
+//             './db/db.json',
+//             JSON.stringify(parsedNotes),
+//             (err) =>
+//               err
+//                 ? console.error(err)
+//                 : console.info('Successfully updated notes!')
+//           );
+//         }
+
+//       });
 
 module.exports = notes;
