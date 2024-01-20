@@ -4,7 +4,7 @@ const path = require('path');
 // Import the index router
 const api = require('./routes/index');
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 const app = express();
 
