@@ -32,14 +32,21 @@ Below are the assigmemnt's requirements:
 * WHEN I click on the "New Note" button in the navigation at the top of the page
 * THEN I am presented with empty fields to enter a new note title and the note’s text in the right-hand column and the button disappears
 
+## How to use it
+
+Click on the 'Get Started' Button to acces to the Note Taker interface. Enter in the test fields the title of your task/note and write more information in the second text field. Once these fields completed, click on the 'Save Note' button to save your note. Once saved, it will appear in the left section of the screen. You can delete completed taks or old notes by click on the 'delete' button in red.
+
+
 ## Links
 
-In order to complete this assignment, I have referred to a few online resources:
+In order to complete this assignment, I have referred to a few resources:
 
-#### About HTML Semantic tags:
-* https://www.w3schools.com/html/html5_semantic_elements.asp
-* https://www.semrush.com/blog/semantic-html5-guide/
+* Solutions from activities and Mini-Project from module 11
+* Used Xpert Learning Assistant about DELETE requests
+* Tutoring session with Wesley Clement to debugg my code
 
-#### CSS Style sheet organization
-* https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Organizing
-* https://css-tricks.com/methods-organize-css/
+## Deployed Application
+
+## Screenshots
+
+![Website Screenshot](./public/assets/NoteTaker.png)
