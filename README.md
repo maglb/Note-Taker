@@ -47,6 +47,8 @@ In order to complete this assignment, I have referred to a few resources:
 
 ## Deployed Application
 
+https://limitless-stream-16633-5be9ab797eb8.herokuapp.com/notes
+
 ## Screenshots
 
 ![Website Screenshot](./public/assets/NoteTaker.png)
