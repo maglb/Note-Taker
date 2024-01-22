@@ -1,3 +1,4 @@
+// Import modules
 const express = require('express');
 const path = require('path');
 
@@ -18,12 +19,12 @@ app.use(express.static('public'));
 // Send all the requests that begin with /api to the index.js in the routes folder
 app.use('/api', api);
 
-// This view route is a GET route for the notes page
+// This view route is a GET route that send the user to the notes page and retrieve all notes from the database
 app.get('/notes', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
-// This view route is a GET route for the homepage
+// This view route is a GET route for any other endpoint that direct the user to the homepage
 app.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/index.html'))
 );
