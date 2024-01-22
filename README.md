@@ -4,9 +4,9 @@ Module 11 Challenge
 
 ## Description
 
-For this project, our task was to improve an existing code for web accessibility.  
-Throughout this process, we learned to identify individual sections within the HTML file and implement semantic tags to improve accessibility.
-I have learned to write more concise CSS style sheets and reorganizing the codebase for improved efficiency.
+For this project, our task was to create an application called Note Taker that can be used to write and save notes. This application will use an Express.js back end and will save and retrieve note data from a JSON file.
+
+During this project we learned, how to connect the back-end to the front-en application. We used skills about creating routes with GET, POST and DELETE requests.
 
 Below are the assigmemnt's requirements:
 
